@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class Game {
     public static final Random random = new Random();
-    public static final Person hero = new Human("S", 10, 10, 0, 1000, 2);
+    public static final Person hero = new Human("S", 10, 10, 0, 1000, 3);
     public static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws InterruptedException {
@@ -29,7 +29,7 @@ public class Game {
                         action = Optional.empty();
                     }
                 }
-                case 3 -> {return;}
+                case 3 -> exit = true;
             }
             if (action.isPresent()) {
                 Thread thr = new Thread(action.get());
@@ -59,7 +59,7 @@ public class Game {
 
     //продолжить / вернуться в главное меню
     static int continueAction(Optional<Area> area) {
-        if (!area.isEmpty()) {
+        if (area.isPresent()) {
             String command;
             do {
                 System.out.printf("вернуться в город - [R], продолжить %s - [C] : ", area.get().getActionName());
