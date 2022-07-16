@@ -29,13 +29,17 @@ public class Game {
                         action = Optional.empty();
                     }
                 }
-                case 3 -> exit = true;
+                case 3 -> {
+                    action = Optional.empty();
+                    exit = true;
+                }
             }
             if (action.isPresent()) {
                 Thread thr = new Thread(action.get());
                 thr.start();
                 thr.join();
-            };
+            }
+            ;
         }
     }
 
